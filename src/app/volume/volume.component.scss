@@ -1,0 +1,73 @@
+:host {
+  display: block;
+
+  $dot-size: 10px;
+  $x-base: 58%;
+  $y-base: 55%;
+
+  .container {
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+    border: dotted #ff4081 2px;
+  }
+
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    height: $dot-size;
+    width: $dot-size;
+    background-color: black;
+    cursor: pointer;
+  }
+
+  @for $i from 1 through 4 {
+    .dot-1_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i});
+      right: $x-base;
+    }
+  }
+
+  @for $i from 1 through 4 {
+    .dot-2_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i});
+      right: calc(#{$x-base} - #{$dot-size});
+    }
+  }
+
+  @for $i from 1 through 6 {
+    .dot-3_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i} + #{$dot-size});
+      right: calc(#{$x-base} - #{$dot-size * 2});
+    }
+  }
+
+  @for $i from 1 through 8 {
+    .dot-4_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i} + #{$dot-size * 2});
+      right: calc(#{$x-base} - #{$dot-size * 3});
+    }
+  }
+
+  @for $i from 1 through 10 {
+    .dot-5_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i} + #{$dot-size * 3});
+      right: calc(#{$x-base} - #{$dot-size * 4});
+    }
+  }
+
+  @for $i from 1 through 12 {
+    .dot-6_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i} + #{$dot-size * 4});
+      right: calc(#{$x-base} - #{$dot-size * 5});
+    }
+  }
+
+  @for $i from 1 through 6 {
+    $var: if($i == 1, 0px, if($i == 6, 0px, $dot-size));
+    .wave-dot-1_#{$i} {
+      top: calc(#{$y-base} - #{$dot-size * $i} + #{$dot-size * 1});
+      right: calc(#{$x-base} - #{$dot-size * 7} - #{$var});
+    }
+  }
+}

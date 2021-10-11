@@ -1,0 +1,16 @@
+<mat-card>
+    <div class="container">
+
+        <ng-container *ngFor="let column of MODEL">
+            <div
+                *ngFor="let dotClass of column"
+                [className]="dotClass + ' dot'"
+                class="dot"
+                cdkDragBoundary=".container"
+                cdkDrag
+            >
+            </div>
+        </ng-container>
+
+    </div>
+</mat-card>
