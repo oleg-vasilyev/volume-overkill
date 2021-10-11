@@ -1,11 +1,17 @@
 <h1>
-    Construct a number from the dots to set the sound level
+    Construct a number from the dots to change the volume
 </h1>
 
 <app-volume></app-volume>
 
+<img
+    class="image"
+    src="../assets/image.png"
+    alt="rickroll"
+>
+
 <mat-progress-bar
-    *ngIf="isLoading"
+    [class.progress-bar-invisible]="!isLoading"
     class="progress-bar"
     mode="indeterminate"
     color="accent"
@@ -20,3 +26,15 @@
 >
     Try
 </button>
+
+<audio
+    #audioPlayer
+    autoplay="autoplay"
+    preload="auto"
+    loop="loop"
+>
+    <source
+        src="../assets/sound.mp3"
+        type="audio/mp3"
+    >
+</audio>

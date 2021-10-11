@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 
 import html2canvas from 'html2canvas';
 import { VolumeComponent } from './volume/volume.component';
@@ -12,12 +12,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AppComponent {
 
+  @ViewChild('audioPlayer')
+  public audioPlayerRef!: ElementRef;
+
   @ViewChild(VolumeComponent, { read: ElementRef })
   public volumeComponentRef!: ElementRef;
 
   public isLoading = false;
 
-  public constructor(private _snackBar: MatSnackBar) { }
+  public constructor(@Inject(MatSnackBar) private _snackBar: MatSnackBar) { }
 
   public async clickHandler(): Promise<void> {
     this.isLoading = true;
@@ -37,7 +40,10 @@ export class AppComponent {
     this.isLoading = false;
 
     if (data.blocks.length) {
-      this._snackBar.open(`The sound level is set to ${data.text}%`, 'Ok');
+      const volume = parseInt(data.text);
+      this._snackBar.open(`The sound level is set to ${volume}%`, 'Ok');
+
+      this.audioPlayerRef.nativeElement.volume = volume / 100 ?? 1;
     } else {
       this._snackBar.open('Number is not recognized, try harder!', 'Sure...');
     }
